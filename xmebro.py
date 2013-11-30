@@ -1,5 +1,3 @@
-__author__ = 'miwalker'
-
 import time
 import urllib
 from BeautifulSoup import BeautifulSoup
