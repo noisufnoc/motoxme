@@ -28,5 +28,4 @@ if price == '$549.99':
     pushover_notify('Not On Sale: Price is %s' % price)
 else:
     print 'SALE! %s' % price
-    pushover_notify('BUY BUY BUYr!: Price is %s' % price)
-
+    pushover_notify('BUY BUY BUY!: Price is %s' % price)
