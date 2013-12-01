@@ -24,8 +24,8 @@ soup = BeautifulSoup(urllib.urlopen(url))
 price = str(soup('p', 'price')[0]).split('>')[2].split('<')[0]
 
 if price == '$549.99':
-    print 'NO SALE %s' % price
-    pushover_notify('Not On Sale: Price is %s' % price)
+    print 'Not on sale at %s: %s' % (time.strftime("%H:%M:%S", time.localtime()), price)
+    #pushover_notify('Not On Sale: Price is %s' % price)
 else:
     print 'SALE! %s' % price
     pushover_notify('BUY BUY BUY!: Price is %s' % price)
