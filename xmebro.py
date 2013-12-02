@@ -44,6 +44,10 @@ def check_sale():
     soup = BeautifulSoup(resp)
     logger.info('HTTP Response %s' % str(resp.getcode()))
 
+    if resp.getcode() != 200:
+        logger.info('Something is wrong with Moto.')
+        return False
+
     price = str(soup('p', 'price')[0]).split('>')[2].split('<')[0]
 
     if price == '$549.99':
