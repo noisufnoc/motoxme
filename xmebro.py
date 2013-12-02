@@ -20,7 +20,8 @@ def check_sale():
 
     url = 'http://www.motorola.com/us/shop-all-mobile-phones-1/Moto-X-Developer-Edition-Verizon/moto-x-developer-edition-verizon.html?v=%s' % busta
 
-    soup = BeautifulSoup(urllib.urlopen(url))
+    resp = urllib.urlopen(url)
+    soup = BeautifulSoup(resp)
 
     price = str(soup('p', 'price')[0]).split('>')[2].split('<')[0]
 
