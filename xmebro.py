@@ -15,17 +15,24 @@ def pushover_notify(message):
     return conn.getresponse()
 
 
-busta = str(time.time()).split('.')[0]
+def check_sale():
+    busta = str(time.time()).split('.')[0]
 
-url = 'http://www.motorola.com/us/shop-all-mobile-phones-1/Moto-X-Developer-Edition-Verizon/moto-x-developer-edition-verizon.html?v=%s' % busta
+    url = 'http://www.motorola.com/us/shop-all-mobile-phones-1/Moto-X-Developer-Edition-Verizon/moto-x-developer-edition-verizon.html?v=%s' % busta
 
-soup = BeautifulSoup(urllib.urlopen(url))
+    soup = BeautifulSoup(urllib.urlopen(url))
 
-price = str(soup('p', 'price')[0]).split('>')[2].split('<')[0]
+    price = str(soup('p', 'price')[0]).split('>')[2].split('<')[0]
 
-if price == '$549.99':
-    print 'Not on sale at %s: %s' % (time.strftime("%H:%M:%S", time.localtime()), price)
-    #pushover_notify('Not On Sale: Price is %s' % price)
-else:
-    print 'SALE! %s' % price
-    pushover_notify('BUY BUY BUY!: Price is %s' % price)
+    if price == '$549.99':
+        print 'Not on sale at %s: %s' % (time.strftime("%H:%M:%S", time.localtime()), price)
+        return False
+        #pushover_notify('Not On Sale: Price is %s' % price)
+    else:
+        print 'SALE! %s' % price
+        pushover_notify('BUY BUY BUY!: Price is %s' % price)
+        return True
+
+
+while check_sale() != True:
+    time.sleep(60)
