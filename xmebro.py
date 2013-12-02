@@ -10,7 +10,7 @@ logger = logging.getLogger('xmebro')
 logger.setLevel(logging.INFO)
 
 # create a file handler
-handler = logging.FileHandler('xmebro.log')
+handler = logging.FileHandler('/tmp/xmebro.log')
 handler.setLevel(logging.INFO)
 
 # create a logging format
